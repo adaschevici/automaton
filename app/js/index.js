@@ -19,14 +19,14 @@ webview.addEventListener('dom-ready', () => {
 
 let extractLinks = function (html) {
   const $ = cheerio.load(html)
-  $('a').each((i, element) => {
+  $('h2').each((i, element) => {
     console.log('href: ' + $(element).attr('href'))
     console.log('text: ' + $(element).text())
   })
 }
 
-let childLoadURL = function (url) {
-  ipcRenderer.send('scrapeurl', url)
+let startScrape = (url) => {
+  ipcRenderer.send('startscrape', url)
 }
 
 ipcRenderer.on('extracthtml', (event, html) => {
